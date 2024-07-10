@@ -1,0 +1,53 @@
+#include <crails/i18n.hpp>
+#include <crails/cms/models/settings.hpp>
+#include <crails/cms/plugins.hpp>
+#include <crails/cms/views/menu.hpp>
+#include "lib/assets.hpp"
+#include "src/style.hpp"
+
+FeuilletStyle style;
+const char* @yield;
+const Crails::Cms::Settings& @settings;
+const Crails::Cms::Plugins* plugins = Crails::Cms::Plugins::singleton::get();
+std::string @page_title = settings.get_title();
+std::string @main_menu = "main-menu";
+bool @render_footer = true;
+  "family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i|Belgrano";
+
+// END LINKING
+<!DOCTYPE html>
+<html lang="<%= i18n::Settings::singleton::require().get_current_locale() %>" class="u-responsive-lg">
+  <head>
+    <title><%= page_title %></title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <%= partial("layouts/head") %>
+    <%= tag("link", {{"rel","stylesheet"},{"href", FeuilletAssets::layout_css}}) %>
+    <%= tag("link", {{"rel","stylesheet"},{"href", "https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i|Belgrano"}}) %>
+    <%= tag("script", {{"src", FeuilletAssets::bundle_js}}) %>
+    <% if (plugins && plugins->has_plugins()) do -%>
+      <%= tag("link", {{"rel", "stylesheet"},{"href", Crails::Cms::Plugins::application_css_uri}}) %>
+    <% end -%>
+  </head>
+  <body class="u-body">
+    <header class="stick u-border-no-bottom u-border-no-left u-border-no-right u-border-no-top u-clearfix u-header u-header">
+      <div class="u-clearfix u-sheet u-sheet-1">
+        <%= Crails::Cms::RenderMenu(main_menu, this)
+               .with_direction(Crails::Cms::Menu::Horizontal)
+               .with_style(&style)() yields %>
+          <h1><%= settings.get_title() %></h1>
+        <% yields-end %>
+      </div>
+    </header>
+
+    <main>
+      <% if (yield != nullptr) do -%>
+        <%= yield %>
+      <% end -%>
+
+      <% if (render_footer) do -%>
+        <%= settings.get_footer() %>
+      <% end -%>
+    </main>
+  </body>
+</html>

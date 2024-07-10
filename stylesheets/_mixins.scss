@@ -1,0 +1,110 @@
+@import "variables";
+
+@mixin button {
+  background-color: var(--primary-background);
+  color: #000000 !important;
+  margin: 29px 0 0 0;
+  padding: 10px 43px;
+  display: table;
+  cursor: pointer;
+  border: 0 none transparent;
+  border-radius: 0;
+  text-align: center;
+  vertical-align: middle;
+  font-family: "Open Sans", sans-serif;
+  &.active, &:active {
+    color: var(--secondary-background) !important;
+    border-color: var(--secondary-background) !important;
+    border-width: 1px !important;
+    border-style: solid !important;
+    padding: 9px 41px !important;
+    background-color: var(--main-background) !important;
+  }
+  &:hover {
+    background-color: #f8a272;
+    color: black;
+  }
+}
+
+@mixin card {
+  margin: 1em;
+  padding: 0.5em 1em;
+  background-color: var(--secondary-background);
+  color: var(--secondary-font-color);
+  font-family: "Open Sans", sans-serif;
+  &:last-of-type {
+    margin-bottom: 0;
+  }
+  @media (max-width: #{$small-breakpoint}) {
+    margin: 0.5em;
+    padding: 0.25em 0.5em;
+  }
+
+  a {
+    color: var(--secondary-link-color);
+  }
+
+  tbody {
+    color: var(--secondary-font-color);
+  }
+}
+
+@mixin navbar {
+  background-color: var(--secondary-background);
+  > ul {
+    display: flex;
+    margin: 0 auto;
+    padding: 0;
+    list-style: none;
+    justify-content: center;
+
+    > li {
+      color: var(--secondary-link-color);
+      font-weight: 400;
+      margin: 0 .5em;
+
+      > a {
+        display: inline-block;
+        font-size: 1.2em;
+        color: var(--secondary-link-color);
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+        margin: 0.2em 0.5em;
+        max-width: 400px;
+      }
+    }
+  }
+}
+
+@mixin navbar-prev-and-next {
+  @include navbar;
+  > ul {
+    > li:first-of-type {
+      flex-grow: 1;
+    }
+
+    > li {
+      display: flex;
+      align-items: center;
+
+      > a {
+        @media (max-width: 981px) { max-width: 300px; }
+        @media (max-width: 767px) { max-width: 200px; }
+      }
+
+      &[data-role="previous"]:before {
+        content: '«';
+      }
+      &[data-role="next"]:after {
+        content: '»';
+      }
+    }
+
+    @media (max-width: #{$small-breakpoint}) {
+      flex-flow: column;
+      > li[data-role="next"] { align-self: end; }
+      > li > a { max-width: 100%; }
+    }
+  }
+}

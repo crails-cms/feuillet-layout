@@ -1,0 +1,36 @@
+@import "fonts";
+
+.proudcms-page-editor {
+  @import "theme";
+
+  [data-component] > .u-sheet {
+    max-width: 100%;
+  }
+
+  [data-component="picture"] {
+    display: block !important;
+  }
+
+  [data-component="home_header"] {
+    margin-bottom: 0;
+  }
+
+  [data-component="section"], [data-component="home_header"] {
+    > nav {
+      position: relative;
+      z-index: 100;
+    }
+  }
+
+  .feuillet {
+    z-index: -1;
+  }
+
+  .feuillet:not(.stick-to-bottom) {
+    top: 36px;
+  }
+
+  .u-layout-cell:before {
+    display: none !important;
+  }
+}

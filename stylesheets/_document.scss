@@ -1,0 +1,72 @@
+$sheet-color: var(--feuillet-background);
+
+main > .document {
+  margin: 0 auto;
+  padding: 1em;
+  max-width: 960px;
+
+  &:before {
+    content: " ";
+    position: absolute;
+    z-index: -1;
+    top: 5.9em; left: 0; right: 0;
+    bottom: 0;
+    background-color: $sheet-color;
+    box-shadow: 0 5px 10px $sheet-color;
+  }
+
+  &:after {
+    content: " ";
+    display: block;
+    clear: both;
+  }
+
+  @media (max-width: 575px) {
+    padding: 1em 0.5em;
+  }
+}
+
+figure.table {
+  margin: 0 auto;
+  overflow-x: auto;
+
+  td figure {
+    margin: 0;
+  }
+
+  table {
+    margin: 0 auto;
+    border-collapse: collapse;
+    border: var(--secondary-link-color) solid 2px;
+    td {
+      border: var(--primary-font-color) solid 1px;
+    }
+  }
+}
+
+figure.image {
+  text-align: center;
+  margin: 0 auto;
+
+  &.image-style-left-side, &.image-style-right-side {
+    padding: 0 1em;
+  }
+  &.image-style-left-side {
+    float: left;
+  }
+  &.image-style-right-side {
+    float: right;
+  }
+  &.image_resized img {
+    height: auto !important;
+    width: auto !important;
+  }
+}
+
+figure.image-style-left-side {
+  float: left;
+}
+
+figure.image-style-right-side {
+  float: right;
+}

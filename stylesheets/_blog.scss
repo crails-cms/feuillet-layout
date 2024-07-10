@@ -1,0 +1,39 @@
+@import "mixins";
+@import "blog_injectable";
+
+.blog-index {
+  .blog-post {
+    position: relative;
+    .feuillet {
+      z-index: -1;
+    }
+  }
+
+  article {
+    margin: 0 auto;
+    max-width: 800px;
+    padding: 2em;
+
+    img {
+      float: right;
+      padding-left: 1em;
+      padding-top: 1em;
+      max-width: 300px;
+      max-height: 300px;
+    }
+
+    a {
+      @include button;
+    }
+  }
+}
+
+.blog-nav {
+  @include navbar-prev-and-next();
+}
+
+.blog-article {
+  .blog-article-thumbnail {
+    display: none;
+  }
+}

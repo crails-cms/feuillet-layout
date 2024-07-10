@@ -1,0 +1,11 @@
+@import "fonts";
+@import "theme";
+@import "document";
+@import "lightbox";
+
+body > main > *:first-child {
+  margin-top: -2px;
+  @media (max-width: #{$medium-breakpoint}) {
+    margin-top: -5px;
+  }
+}

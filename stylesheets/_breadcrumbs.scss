@@ -1,0 +1,21 @@
+@import "mixins";
+@import "variables";
+
+.breadcrumbs {
+  @include navbar;
+
+  @media (max-width: #{$medium-breakpoint}) {
+    ul {
+      flex-direction: column;
+    }
+  }
+
+  ul > li {
+    display: flex;
+    align-items: center;
+  }
+
+  ul > li:not(:last-of-type):after {
+    content: '»';
+  }
+}

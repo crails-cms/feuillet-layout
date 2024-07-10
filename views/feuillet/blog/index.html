@@ -1,0 +1,33 @@
+#include <crails/cms/models/blog/post.hpp>
+#include <crails/cms/local_route.hpp>
+#include <crails/i18n.hpp>
+#include "src/style.hpp"
+
+const FeuilletStyle style;
+const Crails::Cms::LocalRoute route = Crails::Cms::LocalRoute(vars);
+const std::vector<std::unique_ptr<Crails::Cms::BlogPost>>& @models;
+int index = 0;
+
+// END LINKING
+
+<div class="blog-index">
+  <% for (const auto& model : models) do -%>
+    <div class="blog-post">
+      <%= style.feuillet(index++) %>
+      <article>
+        <%= tag("img", {{"src",model->get_thumbnail_url()}}) %>
+        <h2><%= html_escape(model->get_title()) %></h2>
+        <div class="description">
+          <%= html_escape(model->get_description()) %>
+        </div>
+        <a href="<%= route.make(model->get_slug()) %>">
+          <%= i18n::t("blog.read-more") %>
+        </a>
+      </article>
+    </div>
+  <% end -%>
+</div>
+
+<%= partial("paginator", {
+  {"style", reinterpret_cast<const Crails::Cms::Style*>(&style)}
+}) %>

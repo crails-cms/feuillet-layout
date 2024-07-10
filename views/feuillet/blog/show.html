@@ -1,0 +1,20 @@
+#include <crails/cms/models/blog/post.hpp>
+#include <crails/cms/local_route.hpp>
+#include <crails/i18n.hpp>
+#include "src/style.hpp"
+
+const FeuilletStyle style;
+const Crails::Cms::BlogPost& @model;
+
+// END LINKING
+<%= partial("blog/_show_nav") %>
+
+<div class="<%= style.document_wrapper_classes() %>">
+  <article class="blog-article">
+    <h1><%= html_escape(model.get_title()) %></h1>
+    <img class="blog-article-thumbnail" src="<%= model.get_thumbnail_url() %>" />
+    <div class="body">
+      <%= model.get_body() %>
+    </div>
+  </article>
+</div>

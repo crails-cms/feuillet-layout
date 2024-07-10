@@ -1,0 +1,88 @@
+div.lightbox {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  z-index: 1000;
+
+  &:before {
+    position: absolute;
+    display: block;
+    content: " ";
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    opacity: 0.4;
+    z-index: -1;
+  }
+
+  > div {
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    justify-content: center;
+    height: calc(100% - 12em);
+    margin: 6em 50px;
+    background-color: black;
+    box-shadow: black 0 0 10px;
+    padding: 1em;
+    img {
+      max-height: 100%;
+      max-width: 100%;
+    }
+
+    @media (max-width: 575px) {
+      margin: 6em 6px;
+      padding: 2px;
+    }
+  }
+
+  button {
+    &.close, &.previous, &.next {
+      position: absolute;
+      border-radius: 999px;
+      background-color: var(--main-background);
+      cursor: pointer;
+      height: 50px;
+      width: 50px;
+      &:before {
+        color: var(--primary-font-color);
+        font-size: 1.5em;
+      }
+    }
+    &.close:before {
+      content: "x";
+    }
+    &.close {
+      top: 1em; right: 1em;
+    }
+    &.previous:before {
+      content: "«";
+    }
+    &.previous {
+      top: 50%;
+      left: 1em;
+    }
+    &.next:before {
+      content: "»";
+    }
+    &.next {
+      top: 50%;
+      right: 1em;
+    }
+
+    @media (max-width: #{$small-breakpoint}) {
+      &.next, &.previous {
+        bottom: 7em;
+      }
+    }
+
+    @media (max-width: #{$tiny-breakpoint}) {
+      &.next, &.previous {
+        top: 1em;
+      }
+      &.next {
+        left: 50%;
+        transform: translate(-50%);
+      }
+    }
+  }
+}

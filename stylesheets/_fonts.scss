@@ -1,0 +1,13 @@
+/* 
+ * Example:
+ * N.B: font.ttf should be stored in the stylesheets/fonts folder
+
+@font-face {
+  font-family: "Font Family Name";
+  src: url("/cms/plugins/feuillet/assets/font.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&display=swap')
