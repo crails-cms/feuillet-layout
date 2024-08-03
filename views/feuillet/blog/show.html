@@ -12,7 +12,7 @@ const Crails::Cms::BlogPost& @model;
 <div class="<%= style.document_wrapper_classes() %>">
   <article class="blog-article">
     <h1><%= html_escape(model.get_title()) %></h1>
-    <img class="blog-article-thumbnail" src="<%= model.get_thumbnail_url() %>" />
+    <img class="blog-article-thumbnail" src="<%= model.get_thumbnail_url() %>" alt="" />
     <div class="body">
       <%= model.get_body() %>
     </div>

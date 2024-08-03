@@ -5,10 +5,20 @@ import FooterComponent from "./editor/footer.js";
 
 const nicepageGridSize = 60;
 
+function spanForDisplay(sizes, displaySize) {
+  const size = sizes[displaySize];
+
+  if (size === undefined && displaySize > 0) {
+    return spanForDisplay(sizes, --displaySize);
+  }
+  return size;
+}
+
 PageEditor.GridComponentEditor.model = new class extends PageEditor.GridComponentEditor.Model {
   get maxColumns() { return 10; }
   get gridClassList() { return ["u-layout-row"]; }
   get componentClassPattern() { return /^u-(hidden|size-[0-9]+)-(xl|lg|md|sm)/; }
+  widthFromSize(sizeId) { return [1200, 992, 576, 340][sizeId]; }
   mediaSizeName(value) { return ['xl', 'lg', 'md', 'sm'][value]; }
   sizeFromMediaName(value) {
     return {
@@ -22,15 +32,18 @@ PageEditor.GridComponentEditor.model = new class extends PageEditor.GridComponen
     };
   }
   updateElementSizes(element, sizes) {
-    super.updateElementSizes(element, sizes);
+    let defaultSize = null;
     for (let i = 0 ; i <= this.sizes.Small ; ++i) {
-      const size = sizes[i];
+      const size = spanForDisplay(sizes, i);
+      const sizeName = this.mediaSizeName(i);
+
       if (size !== undefined) {
-        element.classList.add(this.classNameForSpan('', size));
-        return ;
+        element.classList.add(this.classNameForSpan(sizeName, size);
+        defaultSize = defaultSize === null ? size : defaultSize;
       }
     }
-    console.error("updateElementSizes failed to find the default size", element, sizes);
+    defaultSize = defaultSize === null ? nicepageGridSize : defaultSize;
+    element.classList.add(this.classNameForSpan('', defaultSize));
   }
   classNameForSpan(media, span) {
     const ratio = (span / this.maxColumns) * nicepageGridSize;
@@ -39,6 +52,17 @@ PageEditor.GridComponentEditor.model = new class extends PageEditor.GridComponen
     if (media === '')
       return `u-size-${ratio}`
     return `u-size-${ratio}-${media}`;
+  }
+  resetElementSizes(element) {
+    const matcher = /^u-(size|hidden)/;
+    let i = 0;
+    while (i < element.classList.length) {
+      const klass = element.classList[i];
+      if (matcher.exec(klass))
+        element.classList.remove(klass);
+      else
+        i++;
+    }
   }
 }
 

@@ -10,6 +10,10 @@
 
 /* Your theme goes here */
 
+body {
+  background-color: var(--main-background);
+}
+
 h1, h2, h3, h4, h5, h6 {
   font-family: Belgrano, 'Open Sans', sans-serif;
 }
@@ -97,6 +101,7 @@ article {
   position: relative;
   z-index: 1;
   box-shadow: $shadow-color 0 -4px 5px;
+  margin-top: 1em;
 }
 
 [data-view="unauthorized"] {

@@ -45,9 +45,6 @@ $sheet-color: var(--feuillet-background);
 
 .feuillet + .u-sheet {
   [data-component="paragraph"] {
-    @media (max-width: 991px) and (min-width: 576px) {
-      padding-right: 11.5em;
-    }
     @media (max-width: 575px) {
       padding-right: 1.5em;
     }
@@ -56,9 +53,6 @@ $sheet-color: var(--feuillet-background);
 
 .feuillet.right-handed + .u-sheet {
   [data-component="paragraph"] {
-    @media (max-width: 991px) and (min-width: 576px) {
-      padding-right: 11.5em;
-    }
     @media (max-width: 575px) {
       padding-left: 1.5em;
     }

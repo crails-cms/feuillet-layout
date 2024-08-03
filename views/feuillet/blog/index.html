@@ -15,7 +15,7 @@ int index = 0;
     <div class="blog-post">
       <%= style.feuillet(index++) %>
       <article>
-        <%= tag("img", {{"src",model->get_thumbnail_url()}}) %>
+        <%= tag("img", {{"src",model->get_thumbnail_url()},{"alt",""}}) %>
         <h2><%= html_escape(model->get_title()) %></h2>
         <div class="description">
           <%= html_escape(model->get_description()) %>

@@ -9,3 +9,18 @@ body > main > *:first-child {
     margin-top: -5px;
   }
 }
+
+.anchor-item {
+  display: block;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  @media (max-width: #{$tiny-breakpoint}) {
+    margin-top: -48px;
+    margin-bottom: 48px;
+  }
+  @media (min-width: #{$tiny-breakpoint + 1px}) {
+    margin-top: -88px;
+    margin-bottom: 88px;
+  }
+}
