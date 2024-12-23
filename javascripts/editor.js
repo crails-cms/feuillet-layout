@@ -33,12 +33,13 @@ PageEditor.GridComponentEditor.model = new class extends PageEditor.GridComponen
   }
   updateElementSizes(element, sizes) {
     let defaultSize = null;
+    this.resetElementSizes(element);
     for (let i = 0 ; i <= this.sizes.Small ; ++i) {
       const size = spanForDisplay(sizes, i);
       const sizeName = this.mediaSizeName(i);
 
       if (size !== undefined) {
-        element.classList.add(this.classNameForSpan(sizeName, size);
+        element.classList.add(this.classNameForSpan(sizeName, size));
         defaultSize = defaultSize === null ? size : defaultSize;
       }
     }

@@ -89,6 +89,7 @@ article {
 
 [data-component="section"] {
   position: relative;
+  min-height: 50px;
 
   .u-sheet {
     max-width: 100% !important;
